@@ -45,8 +45,10 @@
             this.zdrojText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.zdrojText.Location = new System.Drawing.Point(231, 27);
             this.zdrojText.Name = "zdrojText";
+            this.zdrojText.ReadOnly = true;
             this.zdrojText.Size = new System.Drawing.Size(453, 35);
             this.zdrojText.TabIndex = 0;
+            this.zdrojText.TextChanged += new System.EventHandler(this.zmenaTextu);
             // 
             // btnZdroj
             // 
@@ -73,10 +75,12 @@
             // cilText
             // 
             this.cilText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.cilText.Location = new System.Drawing.Point(231, 97);
+            this.cilText.Location = new System.Drawing.Point(231, 93);
             this.cilText.Name = "cilText";
+            this.cilText.ReadOnly = true;
             this.cilText.Size = new System.Drawing.Size(453, 35);
             this.cilText.TabIndex = 2;
+            this.cilText.TextChanged += new System.EventHandler(this.zmenaTextu);
             // 
             // progressBar1
             // 
@@ -97,6 +101,7 @@
             this.pripona.Name = "pripona";
             this.pripona.Size = new System.Drawing.Size(453, 33);
             this.pripona.TabIndex = 5;
+            this.pripona.SelectedIndexChanged += new System.EventHandler(this.zmenaTextu);
             // 
             // label1
             // 
@@ -110,7 +115,7 @@
             // 
             // btnKopirovat
             // 
-            this.btnKopirovat.BackColor = System.Drawing.Color.Red;
+            this.btnKopirovat.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnKopirovat.Font = new System.Drawing.Font("Arial Black", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnKopirovat.Location = new System.Drawing.Point(23, 218);
             this.btnKopirovat.Name = "btnKopirovat";
@@ -119,6 +124,7 @@
             this.btnKopirovat.Text = "Kopírovat soubory";
             this.btnKopirovat.UseVisualStyleBackColor = false;
             this.btnKopirovat.Click += new System.EventHandler(this.button3_Click);
+            this.btnKopirovat.MouseHover += new System.EventHandler(this.zmenaTextu);
             // 
             // Form1
             // 
@@ -135,6 +141,7 @@
             this.Controls.Add(this.zdrojText);
             this.Name = "Form1";
             this.Text = "Kopírování souborů";
+            this.Load += new System.EventHandler(this.zmenaTextu);
             this.ResumeLayout(false);
             this.PerformLayout();
 
