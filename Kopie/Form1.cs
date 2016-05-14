@@ -39,6 +39,7 @@ namespace Kopie
                     foreach(string soubor in Directory.EnumerateFiles(podslozka))
                     {
                         File.Copy(soubor, cilAdresar.SelectedPath);
+                        // Test
                     }
                 }
             }
