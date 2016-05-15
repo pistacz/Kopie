@@ -36,39 +36,65 @@ namespace Kopie
         {
             if(Directory.Exists(zdrojAdresar.SelectedPath) && Directory.Exists(cilAdresar.SelectedPath) && pripona.SelectedIndex != -1)
             {
-                progressBar1.Value = 10;
-                foreach(string podslozka in Directory.EnumerateDirectories(zdrojAdresar.SelectedPath))
+                int krok = 100/Directory.EnumerateFileSystemEntries(zdrojAdresar.SelectedPath).Count();
+                int poradi = 0;
+                foreach (string soubory in Directory.EnumerateFiles(zdrojAdresar.SelectedPath))
                 {
+                    FileInfo infoSoub = new FileInfo(soubory);
+                    switch (pripona.SelectedItem.ToString())
+                    {
+                        case "*.pdf":
+                            if (infoSoub.Extension == ".pdf")
+                                File.Copy(soubory, cilAdresar.SelectedPath + "\\" + poradi + "_" + infoSoub.Name, true);
+                            break;
+                        case "*.slprt":
+                            if (infoSoub.Extension == ".slprt")
+                                File.Copy(soubory, cilAdresar.SelectedPath + "\\" + poradi + "_" + infoSoub.Name, true);
+                            break;
+                        case "*.pdf a *.slprt":
+                            if (infoSoub.Extension == ".slprt" || infoSoub.Extension == ".pdf")
+                                File.Copy(soubory, cilAdresar.SelectedPath + "\\" + poradi + "_" + infoSoub.Name, true);
+                            break;
+                        case "*.*":
+                        default:
+                            File.Copy(soubory, cilAdresar.SelectedPath + "\\" + poradi + "_" + infoSoub.Name, true);
+                            break;
+                    }
+                }
+                foreach (string podslozka in Directory.EnumerateDirectories(zdrojAdresar.SelectedPath))
+                {
+                    poradi += 1;
                     foreach(string soubor in Directory.EnumerateFiles(podslozka))
                     {
                         FileInfo infoSoub = new FileInfo(soubor);
                         switch(pripona.SelectedItem.ToString())
                         {
                             case "*.pdf":
-                                if(infoSoub.Extension==".pdf")
-                                    File.Copy(soubor, cilAdresar.SelectedPath+"\\"+infoSoub.Name,true);
+                                if (infoSoub.Extension == ".pdf")
+                                    File.Copy(soubor, cilAdresar.SelectedPath + "\\" + poradi + "_" + infoSoub.Name, true);
                                 break;
                             case "*.slprt":
-                                if(infoSoub.Extension== ".slprt")
-                                    File.Copy(soubor, cilAdresar.SelectedPath+"\\"+infoSoub.Name,true);
+                                if (infoSoub.Extension == ".slprt")
+                                    File.Copy(soubor, cilAdresar.SelectedPath + "\\" + poradi + "_" + infoSoub.Name, true);
                                 break;
                             case "*.pdf a *.slprt":
-                                if(infoSoub.Extension== ".slprt" || infoSoub.Extension == ".pdf")
-                                    File.Copy(soubor, cilAdresar.SelectedPath+"\\"+infoSoub.Name,true);
+                                if (infoSoub.Extension == ".slprt" || infoSoub.Extension == ".pdf")
+                                    File.Copy(soubor, cilAdresar.SelectedPath + "\\" + poradi + "_" + infoSoub.Name, true);
                                 break;
                             case "*.*":
                             default:
-                                File.Copy(soubor, cilAdresar.SelectedPath+"\\"+infoSoub.Name,true);
+                                File.Copy(soubor, cilAdresar.SelectedPath + "\\" + poradi + "_" + infoSoub.Name, true);
                                 break;
                         }
                     }
-                    progressBar1.Value += 90/Directory.EnumerateDirectories(zdrojAdresar.SelectedPath).Count();
+                    progressBar1.Value += krok;
                 }
                 progressBar1.Value = 100;
                 
                 zdrojAdresar.SelectedPath = cilAdresar.SelectedPath = zdrojText.Text = cilText.Text = "";
                 pripona.SelectedIndex = -1;
                 progressBar1.Value = 0;
+                zmenaTextu(sender, e);
             }
         }
 
