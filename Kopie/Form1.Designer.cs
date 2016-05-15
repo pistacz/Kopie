@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.zdrojAdresar = new System.Windows.Forms.FolderBrowserDialog();
             this.zdrojText = new System.Windows.Forms.TextBox();
             this.btnZdroj = new System.Windows.Forms.Button();
@@ -40,97 +41,78 @@
             this.btnKopirovat = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
+            // zdrojAdresar
+            // 
+            resources.ApplyResources(this.zdrojAdresar, "zdrojAdresar");
+            // 
             // zdrojText
             // 
-            this.zdrojText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.zdrojText.Location = new System.Drawing.Point(231, 27);
+            resources.ApplyResources(this.zdrojText, "zdrojText");
             this.zdrojText.Name = "zdrojText";
             this.zdrojText.ReadOnly = true;
-            this.zdrojText.Size = new System.Drawing.Size(453, 35);
-            this.zdrojText.TabIndex = 0;
             this.zdrojText.TextChanged += new System.EventHandler(this.zmenaTextu);
             // 
             // btnZdroj
             // 
-            this.btnZdroj.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnZdroj.Location = new System.Drawing.Point(23, 23);
+            resources.ApplyResources(this.btnZdroj, "btnZdroj");
             this.btnZdroj.Name = "btnZdroj";
-            this.btnZdroj.Size = new System.Drawing.Size(185, 46);
-            this.btnZdroj.TabIndex = 1;
-            this.btnZdroj.Text = "Vybrat zdroj";
             this.btnZdroj.UseVisualStyleBackColor = true;
             this.btnZdroj.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnCil
             // 
-            this.btnCil.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnCil.Location = new System.Drawing.Point(23, 93);
+            resources.ApplyResources(this.btnCil, "btnCil");
             this.btnCil.Name = "btnCil";
-            this.btnCil.Size = new System.Drawing.Size(185, 46);
-            this.btnCil.TabIndex = 3;
-            this.btnCil.Text = "Vybrat cíl";
             this.btnCil.UseVisualStyleBackColor = true;
             this.btnCil.Click += new System.EventHandler(this.button2_Click);
             // 
             // cilText
             // 
-            this.cilText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.cilText.Location = new System.Drawing.Point(231, 93);
+            resources.ApplyResources(this.cilText, "cilText");
             this.cilText.Name = "cilText";
             this.cilText.ReadOnly = true;
-            this.cilText.Size = new System.Drawing.Size(453, 35);
-            this.cilText.TabIndex = 2;
             this.cilText.TextChanged += new System.EventHandler(this.zmenaTextu);
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(23, 311);
+            resources.ApplyResources(this.progressBar1, "progressBar1");
+            this.progressBar1.ForeColor = System.Drawing.Color.Green;
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(661, 23);
-            this.progressBar1.TabIndex = 4;
+            // 
+            // cilAdresar
+            // 
+            resources.ApplyResources(this.cilAdresar, "cilAdresar");
             // 
             // pripona
             // 
+            resources.ApplyResources(this.pripona, "pripona");
             this.pripona.FormattingEnabled = true;
             this.pripona.Items.AddRange(new object[] {
-            "*.pdf",
-            "*.slprt",
-            "*.pdf a *.slprt",
-            "*.*"});
-            this.pripona.Location = new System.Drawing.Point(231, 162);
+            resources.GetString("pripona.Items"),
+            resources.GetString("pripona.Items1"),
+            resources.GetString("pripona.Items2"),
+            resources.GetString("pripona.Items3")});
             this.pripona.Name = "pripona";
-            this.pripona.Size = new System.Drawing.Size(453, 33);
-            this.pripona.TabIndex = 5;
             this.pripona.SelectedIndexChanged += new System.EventHandler(this.zmenaTextu);
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(30, 166);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(159, 29);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Typ souboru";
             // 
             // btnKopirovat
             // 
+            resources.ApplyResources(this.btnKopirovat, "btnKopirovat");
             this.btnKopirovat.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.btnKopirovat.Font = new System.Drawing.Font("Arial Black", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnKopirovat.Location = new System.Drawing.Point(23, 218);
             this.btnKopirovat.Name = "btnKopirovat";
-            this.btnKopirovat.Size = new System.Drawing.Size(661, 79);
-            this.btnKopirovat.TabIndex = 7;
-            this.btnKopirovat.Text = "Kopírovat soubory";
             this.btnKopirovat.UseVisualStyleBackColor = false;
             this.btnKopirovat.Click += new System.EventHandler(this.button3_Click);
             this.btnKopirovat.MouseHover += new System.EventHandler(this.zmenaTextu);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(713, 359);
             this.Controls.Add(this.btnKopirovat);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pripona);
@@ -140,7 +122,6 @@
             this.Controls.Add(this.btnZdroj);
             this.Controls.Add(this.zdrojText);
             this.Name = "Form1";
-            this.Text = "Kopírování souborů";
             this.Load += new System.EventHandler(this.zmenaTextu);
             this.ResumeLayout(false);
             this.PerformLayout();

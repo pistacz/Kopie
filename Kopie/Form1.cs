@@ -36,10 +36,16 @@ namespace Kopie
         {
             if(Directory.Exists(zdrojAdresar.SelectedPath) && Directory.Exists(cilAdresar.SelectedPath) && pripona.SelectedIndex != -1)
             {
-                int krok = 100/Directory.EnumerateFileSystemEntries(zdrojAdresar.SelectedPath).Count();
+                btnKopirovat.Text = "Kopíruji …";
+                progressBar1.Step = 1;
+                progressBar1.Value = 0;
+                progressBar1.Minimum = 0;
+                progressBar1.Maximum = Directory.EnumerateFileSystemEntries(zdrojAdresar.SelectedPath).Count();
+                //progressBar1.Visible = true;
                 int poradi = 0;
                 foreach (string soubory in Directory.EnumerateFiles(zdrojAdresar.SelectedPath))
                 {
+                    progressBar1.PerformStep();
                     FileInfo infoSoub = new FileInfo(soubory);
                     switch (pripona.SelectedItem.ToString())
                     {
@@ -64,6 +70,7 @@ namespace Kopie
                 foreach (string podslozka in Directory.EnumerateDirectories(zdrojAdresar.SelectedPath))
                 {
                     poradi += 1;
+                    progressBar1.PerformStep();
                     foreach(string soubor in Directory.EnumerateFiles(podslozka))
                     {
                         FileInfo infoSoub = new FileInfo(soubor);
@@ -87,13 +94,11 @@ namespace Kopie
                                 break;
                         }
                     }
-                    progressBar1.Value += krok;
                 }
-                progressBar1.Value = 100;
                 
                 zdrojAdresar.SelectedPath = cilAdresar.SelectedPath = zdrojText.Text = cilText.Text = "";
                 pripona.SelectedIndex = -1;
-                progressBar1.Value = 0;
+                btnKopirovat.Text = "Kopírovat soubory";
                 zmenaTextu(sender, e);
             }
         }
@@ -102,9 +107,16 @@ namespace Kopie
         {
             //if (zdrojText != null && zdrojText.Text != "" && cilText != null && cilText.Text != "" && pripona.SelectedIndex != -1)
             if (zdrojAdresar.SelectedPath != null && cilAdresar.SelectedPath != null && zdrojAdresar.SelectedPath != "" && cilAdresar.SelectedPath != "" && pripona.SelectedIndex != -1)
+            {
                 btnKopirovat.BackColor = Color.Green;
+                btnKopirovat.Enabled = true;
+            }
             else
+            {
                 btnKopirovat.BackColor = Color.Red;
+                btnKopirovat.Enabled = false;
+                progressBar1.Value = 0;
+            }
         }
     }
 }
